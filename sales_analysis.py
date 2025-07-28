@@ -97,5 +97,15 @@ plt.title("Sales Feature Correlations")
 plt.tight_layout()
 plt.show()
 
+sales_by_territory = df.groupby('Territory')['TotalSales'].sum()
+territory_labels = sales_by_territory.index
+territory_sizes = sales_by_territory.values
+
+plt.figure(figsize=(8, 8))
+plt.pie(territory_sizes, labels=territory_labels, autopct='%1.1f%%', startangle=140)
+plt.title("Share of Total Sales by Territory")
+plt.tight_layout()
+plt.show()
+
 print("Orders with unusually high or low Total Sales:")
 print(df[df['Outlier_TotalSales']][['SalesOrderID', 'TotalSales']].sort_values(by='TotalSales', ascending=False))
